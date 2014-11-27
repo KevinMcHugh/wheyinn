@@ -27,6 +27,7 @@ gem 'spring',        group: :development
 gem 'haml-rails'
 gem 'pg'
 
+gem 'twitter-bootstrap-rails'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.0'

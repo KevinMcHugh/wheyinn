@@ -1,11 +1,11 @@
-= form_for :person, url: people_path do |f|
+= form_for :person, url: people_path, class: "input-group" do |f|
     %p
     = f.label :name
     %br
-    = f.text_field :name
+    = f.text_field :name, { class: "form-control" }
     %p
     = f.label :weight
     %br
-    = f.text_field :weight, autocomplete: :off
+    = f.text_field :weight, { autocomplete: :off, class: "form-control" }
     %p.button
     = f.submit
