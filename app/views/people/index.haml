@@ -1,4 +1,4 @@
-%table{:border => 1, class: 'table table-striped'}
+%table{border: 1, class: 'table table-striped', :'data-sort-name' => "name"}
   %tr
     %th Name
     %th Up By
@@ -9,7 +9,7 @@
       %td #{person.name}
       %td #{person.up_by}
       %td #{person.percentage_change}
-      %td= link_to('Check In', new_checkin_path(person_id: person))
+      %td= link_to('Check In', new_checkin_path(person_id: person), class: 'btn btn-default')
 
 %br
-= link_to('Create a new person', new_person_path)
+= link_to('Create a new person', new_person_path, class: 'btn btn-default')

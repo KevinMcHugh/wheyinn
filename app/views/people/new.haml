@@ -1,4 +1,5 @@
-= form_for :person, url: people_path, class: "input-group" do |f|
+.input-group
+  = form_for :person, url: people_path do |f|
     %p
     = f.label :name
     %br
@@ -7,5 +8,5 @@
     = f.label :weight
     %br
     = f.text_field :weight, { autocomplete: :off, class: "form-control" }
-    %p.button
-    = f.submit
+    %br
+    = f.submit class: "btn btn-primary"
