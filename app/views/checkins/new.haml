@@ -1,8 +1,9 @@
+%h1 New Checkin for #{@person.name}
 = form_for :checkin, url: checkins_path do |f|
     %p
     = f.label :weight
     %br
-    = f.text_field :weight
-    = f.hidden_field :person_id, value: @person_id
+    = f.text_field :weight, autocomplete: :off
+    = f.hidden_field :person_id, value: @person.id
     %p.button
     = f.submit

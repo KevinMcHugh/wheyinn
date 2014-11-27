@@ -6,7 +6,7 @@ class CheckinsController < ApplicationController
   end
 
   def new
-    @person_id = params[:person_id]
+    @person = Person.find(params[:person_id])
   end
 
   private
