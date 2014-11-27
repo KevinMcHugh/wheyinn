@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127044547) do
+ActiveRecord::Schema.define(version: 20141127163242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "checkins", force: true do |t|
-    t.decimal  "weight"
+    t.decimal  "weight",     default: 0.0
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
