@@ -1,0 +1,11 @@
+%table{:border => 1}
+  %tr
+    %th Name
+    %th Up By
+  - @people.each do |person|
+    %tr
+      %td #{person.name}
+      %td #{person.try(:up_by)}
+
+%br
+= link_to('Create a new person', new_person_path)
