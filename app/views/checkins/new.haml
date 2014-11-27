@@ -1,9 +1,10 @@
 %h1 New Checkin for #{@person.name}
-= form_for :checkin, url: checkins_path, class: "input-group" do |f|
+.input-group
+  = form_for :checkin, url: checkins_path do |f|
     %p
     = f.label :weight
     %br
     = f.text_field :weight, { autocomplete: :off, class: "form-control" }
     = f.hidden_field :person_id, value: @person.id
-    %p.button
-    = f.submit
+    %br
+    = f.submit class: "btn btn-primary"
