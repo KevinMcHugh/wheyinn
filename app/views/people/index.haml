@@ -6,7 +6,7 @@
     %th New Check In
   - @people.each do |person|
     %tr
-      %td #{person.name}
+      %td= link_to("#{person.name}", person_path(person), class: 'btn btn-default')
       %td #{person.up_by}
       %td #{person.percentage_change}
       %td= link_to('Check In', new_checkin_path(person_id: person), class: 'btn btn-default')
