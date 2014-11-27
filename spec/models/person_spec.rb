@@ -4,7 +4,7 @@ describe Person do
   subject { Person.create }
   let(:c1) { Checkin.create(person: subject, weight: 100)}
   let(:c2) { Checkin.create(person: subject, weight: 200)}
-  let(:c3) { Checkin.create(person: subject, weight: 300)}
+  let(:c3) { Checkin.create(person: subject, weight: 250)}
   describe '#up_by' do
     context 'with 0 checkins' do
       it 'returns nil' do
@@ -26,7 +26,7 @@ describe Person do
     context 'with many checkins' do
       before { c1; c2; c3}
       it 'calculates the difference between first and last Checkin' do
-        expect(subject.up_by).to eql(200)
+        expect(subject.up_by).to eql(150)
       end
     end
   end
@@ -51,8 +51,14 @@ describe Person do
     context 'with many checkins' do
       before { c1; c2; c3}
       it 'calculates the difference between first and last Checkin' do
-        expect(subject.percentage_change).to eq('200.00')
+        expect(subject.percentage_change).to eq('150.00')
       end
+    end
+  end
+  describe '#checkin_diffs' do
+    before {c1; c2; c3}
+    it 'gives the difference between checkins, in order' do
+      expect(subject.checkin_diffs).to eql(['100.00','50.00'])
     end
   end
 end
