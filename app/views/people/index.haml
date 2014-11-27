@@ -2,10 +2,12 @@
   %tr
     %th Name
     %th Up By
+    %th New Check In
   - @people.each do |person|
     %tr
       %td #{person.name}
       %td #{person.try(:up_by)}
+      %td= link_to('Check In', new_checkin_path(person_id: person))
 
 %br
 = link_to('Create a new person', new_person_path)
