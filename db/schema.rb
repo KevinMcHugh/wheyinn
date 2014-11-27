@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20141127044547) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "checkins", force: true do |t|
     t.decimal  "weight"
     t.integer  "person_id"
@@ -20,7 +23,7 @@ ActiveRecord::Schema.define(version: 20141127044547) do
     t.datetime "updated_at"
   end
 
-  add_index "checkins", ["person_id"], name: "index_checkins_on_person_id"
+  add_index "checkins", ["person_id"], name: "index_checkins_on_person_id", using: :btree
 
   create_table "people", force: true do |t|
     t.string   "name"
