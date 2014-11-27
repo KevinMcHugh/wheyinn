@@ -1,0 +1,8 @@
+= form_for :checkin, url: checkins_path do |f|
+    %p
+    = f.label :weight
+    %br
+    = f.text_field :weight
+    = f.hidden_field :person_id, value: @person_id
+    %p.button
+    = f.submit
