@@ -1,13 +1,15 @@
 %h1= "MURPHY WEIGH-IN #{Event.last.name}"
 %table{border: 1, class: 'table table-striped', :'data-sort-name' => "name"}
   %tr
+    %th
     %th Name
     %th Up By
     %th Percentage Change
     %th New Check In
-  - @people.each do |person|
+  - @people.sort_by(&:up_by).reverse.each_with_index do |person, index|
     %tr
       - percentage_change = person.try(:percentage_change)
+      %td= index + 1
       %td= link_to("#{person.name}", person_path(person), class: 'btn btn-default')
       %td
         - up_by = person.try(:up_by)

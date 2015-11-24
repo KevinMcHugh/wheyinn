@@ -3,13 +3,14 @@ class Person < ActiveRecord::Base
   has_many :checkins
 
   def up_by
-    return nil unless starting_weight
-    current_weight  = current_checkins.last.try(:weight) || 0
-    current_weight - starting_weight
+    return @up_by if @up_by
+    return 0.0 unless starting_weight
+    current_weight = current_checkins.last.try(:weight) || 0
+    @up_by ||= current_weight - starting_weight
   end
 
   def percentage_change
-    starting_weight ? '%.2f' % (up_by / starting_weight * 100) : nil
+    @percentage_change ||= starting_weight ? '%.2f' % (up_by / starting_weight * 100) : nil
   end
 
   def checkin_diffs
