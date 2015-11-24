@@ -1,7 +1,7 @@
 class CheckinsController < ApplicationController
 
   def create
-    @checkin = Checkin.create(checkin_params)
+    @checkin = Checkin.create(checkin_params.merge(event: Event.last))
     redirect_to people_path
   end
 

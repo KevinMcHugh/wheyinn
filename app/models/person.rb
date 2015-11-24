@@ -4,7 +4,7 @@ class Person < ActiveRecord::Base
 
   def up_by
     return nil unless starting_weight
-    current_weight  = current_event.checkins.last.try(:weight) || 0
+    current_weight  = current_checkins.last.try(:weight) || 0
     current_weight - starting_weight
   end
 
@@ -27,20 +27,19 @@ class Person < ActiveRecord::Base
           n
         end
         diffs = diffs.last(diffs.length - 1)
-        event_diffs[event.name] = diffs.map { |bd| '%.2f' % bd }
+        event_diffs[event.try(:name)] = diffs.map { |bd| '%.2f' % bd }
       end
     end
     event_diffs
   end
 
-  private
   def starting_weight
-    if current_event
-      current_event.checkins.first.try(:weight)
+    if current_checkins
+      current_checkins.first.try(:weight)
     end
   end
 
-  def current_event
-    Event.last
+  def current_checkins
+    Event.last.checkins.where(person_id: id)
   end
 end
