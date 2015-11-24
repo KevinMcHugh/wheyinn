@@ -15,13 +15,18 @@ class Person < ActiveRecord::Base
   def checkin_diffs
     prev = starting_weight
     return [] unless checkins.size > 1
-    diffs = checkins.map(&:weight).map do |w|
-      n = w - prev
-      prev = w
-      n
+    grouped = checkins.group_by(&:event)
+    event_diffs = {}
+    grouped.each_pair do |event, event_checkins|
+      diffs = event_checkins.map(&:weight).map do |w|
+        n = w - prev
+        prev = w
+        n
+      end
+      diffs = diffs.last(diffs.length - 1)
+      event_diffs[event.name] = diffs.map { |bd| '%.2f' % bd }
     end
-    diffs = diffs.last(diffs.length - 1)
-    diffs.map { |bd| '%.2f' % bd }
+    event_diffs
   end
 
   private

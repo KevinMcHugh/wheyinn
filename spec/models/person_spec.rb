@@ -77,12 +77,12 @@ describe Person do
   describe '#checkin_diffs' do
     before {c1; c2; c3}
     it 'gives the difference between checkins, in order' do
-      expect(subject.checkin_diffs).to eql(['100.00','50.00'])
+      expect(subject.checkin_diffs).to eql({"1" => ['100.00','50.00']})
     end
     context 'with many events' do
       before { c4; c5; c6 }
-      it 'only uses the checkins from the last event' do
-        expect(subject.checkin_diffs).to eql(['101.00', '101.00'])
+      it 'maps the events to the checkins' do
+        expect(subject.checkin_diffs).to eql({"1" => ['100.00','50.00'], "2" => ['101.00', '101.00']})
       end
     end
   end

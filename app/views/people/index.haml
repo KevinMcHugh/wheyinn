@@ -7,15 +7,14 @@
     %th New Check In
   - @people.each do |person|
     %tr
+      - percentage_change = person.try(:percentage_change)
       %td= link_to("#{person.name}", person_path(person), class: 'btn btn-default')
       %td
         - up_by = person.try(:up_by)
         - color = up_by.to_f > 0 ? 'black' : 'red'
         %font{color: color} #{up_by}
-      %td
-        - percentage_change = person.try(:percentage_change)
-        - color = percentage_change.to_f > 0 ? 'black' : 'red'
-        %font{color: color} #{person.try(:percentage_change)}
+      %td{class: percentage_change.to_f > 0 ? 'black' : 'red' }
+        = percentage_change
       %td= link_to('Check In', new_checkin_path(person_id: person), class: 'btn btn-default')
 
 %br

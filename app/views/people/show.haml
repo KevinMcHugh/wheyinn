@@ -1,8 +1,9 @@
 %h2
   #{@person.name}
   %ul
-- @person.try(:checkin_diffs).each do |diff|
-  %li
+- @person.try(:checkin_diffs).each_pair do |event, diffs|
+  %li= event
+  -diffs.each do |diff|
     - color = diff.to_f > 0 ? 'black' : 'red'
     %font{color: color} #{diff}
 
