@@ -14,7 +14,8 @@ class Person < ActiveRecord::Base
 
   def checkin_diffs
     prev = starting_weight
-    diffs = current_event.checkins.map(&:weight).map do |w|
+    return [] unless checkins.size > 1
+    diffs = checkins.map(&:weight).map do |w|
       n = w - prev
       prev = w
       n
