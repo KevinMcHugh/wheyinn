@@ -14,7 +14,7 @@ class Person < ActiveRecord::Base
   end
 
   def checkin_diffs
-    return [] unless checkins.size > 1
+    return {} unless checkins.size > 1
     grouped = checkins.group_by(&:event)
     event_diffs = {}
     grouped.each_pair do |event, event_checkins|
