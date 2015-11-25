@@ -21,7 +21,7 @@ describe Person do
     context 'with one checkin' do
       before { c1 }
       it 'returns 0' do
-        expect(subject.up_by).to eql(0)
+        expect(subject.up_by).to be_nil
       end
     end
     context 'with two checkins' do
@@ -52,7 +52,7 @@ describe Person do
     context 'with one checkin' do
       before { c1 }
       it 'returns 0' do
-        expect(subject.percentage_change).to eq('0.00')
+        expect(subject.percentage_change).to be_nil
       end
     end
     context 'with two checkins' do
