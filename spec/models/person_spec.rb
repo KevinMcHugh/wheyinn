@@ -3,14 +3,14 @@ require 'spec_helper'
 describe Person do
   subject { Person.create }
   let(:e1) { Event.create(name: '1')}
-  let(:c1) { Checkin.create(person: subject, weight: 100, event: e1)}
-  let(:c2) { Checkin.create(person: subject, weight: 200, event: e1)}
-  let(:c3) { Checkin.create(person: subject, weight: 250, event: e1)}
+  let(:c1) { CreateCheckin.call(subject, e1, 100)}
+  let(:c2) { CreateCheckin.call(subject, e1, 200)}
+  let(:c3) { CreateCheckin.call(subject, e1, 250)}
 
   let(:e2) { Event.create(name: '2')}
-  let(:c4) { Checkin.create(person: subject, weight: 101, event: e2)}
-  let(:c5) { Checkin.create(person: subject, weight: 202, event: e2)}
-  let(:c6) { Checkin.create(person: subject, weight: 303, event: e2)}
+  let(:c4) { CreateCheckin.call(subject, e2, 101)}
+  let(:c5) { CreateCheckin.call(subject, e2, 202)}
+  let(:c6) { CreateCheckin.call(subject, e2, 303)}
 
   describe '#up_by' do
     context 'with 0 checkins' do
