@@ -1,10 +1,15 @@
-%h1 New Checkin for #{@person.name}
-.input-group
-  = form_for :checkin, url: checkins_path do |f|
-    %p
-    = f.label :weight
-    %br
-    = f.text_field :weight, { autocomplete: :off, class: "form-control" }
-    = f.hidden_field :person_id, value: @person.id
-    %br
-    = f.submit class: "btn btn-primary"
+%h1 New Checkin
+%div
+  .input-group
+    = form_for :checkin, url: checkins_path do |f|
+      %p
+      = f.label :weight
+      %br
+      = f.text_field :weight, { autocomplete: :off, class: "form-control" }
+      - options = @people.map { |person| [person.name, person.id] }
+      = f.select :person_id, options_for_select(options)
+      %br
+      = f.submit class: "btn btn-primary"
+
+%h3
+  %a= link_to('Back', people_path)

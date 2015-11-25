@@ -6,11 +6,11 @@ class CheckinsController < ApplicationController
   end
 
   def new
-    @person = Person.find(params[:person_id])
+    @people = Person.all
   end
 
   private
   def checkin_params
-    params.required(:checkin).permit([:weight, :person_id])
+    params.require(:checkin).permit(:weight, :person_id)
   end
 end

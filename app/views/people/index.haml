@@ -4,20 +4,17 @@
     %th
     %th Name
     %th{:'data-field' => 'up_by', :'data-sortable' => 'true'} Up By
-    %th Percentage Change
-    %th New Check In
   - @people.sort_by(&:up_by).reverse.each_with_index do |person, index|
     - up_by = person.try(:up_by)
-    - font_color = up_by.to_f > 0 ? 'green' : 'red'
+    - positive = up_by.to_f > 0 ? 'positive' : 'negative'
     %tr
       - percentage_change = person.try(:percentage_change)
       %td= index + 1
       %td= link_to(person.name, person_path(person), class: 'btn btn-default')
-      %td
-        %font{color: font_color}= up_by
-      %td{class: percentage_change.to_f > 0 ? 'black' : 'red' }
-        = percentage_change
-      %td= link_to('Check In', new_checkin_path(person_id: person), class: 'btn btn-default')
+      %td{class: positive}
+        = "#{up_by} (#{percentage_change}%)"
 
-%br
+%div
+= link_to('Check In', new_checkin_path, class: 'btn btn-default')
+%div
 = link_to('Create a new person', new_person_path, class: 'btn btn-default')
