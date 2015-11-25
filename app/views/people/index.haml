@@ -1,20 +1,20 @@
 %h1= "MURPHY WEIGH-IN #{Event.last.name}"
-%table{border: 1, class: 'table table-striped', :'data-sort-name' => "name"}
+%table{border: 0, class: 'table table-condensed borderless', :'data-sort-name' => 'up_by', :'data-sort-order' => 'desc'}
   %tr
     %th
     %th Name
-    %th Up By
+    %th{:'data-field' => 'up_by', :'data-sortable' => 'true'} Up By
     %th Percentage Change
     %th New Check In
   - @people.sort_by(&:up_by).reverse.each_with_index do |person, index|
+    - up_by = person.try(:up_by)
+    - font_color = up_by.to_f > 0 ? 'green' : 'red'
     %tr
       - percentage_change = person.try(:percentage_change)
       %td= index + 1
-      %td= link_to("#{person.name}", person_path(person), class: 'btn btn-default')
+      %td= link_to(person.name, person_path(person), class: 'btn btn-default')
       %td
-        - up_by = person.try(:up_by)
-        - color = up_by.to_f > 0 ? 'black' : 'red'
-        %font{color: color} #{up_by}
+        %font{color: font_color}= up_by
       %td{class: percentage_change.to_f > 0 ? 'black' : 'red' }
         = percentage_change
       %td= link_to('Check In', new_checkin_path(person_id: person), class: 'btn btn-default')

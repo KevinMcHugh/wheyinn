@@ -1,9 +1,11 @@
 %h2
   #{@person.name}
-  %ul
 - @person.try(:checkin_diffs).each_pair do |event, diffs|
-  %li= event
+  %h3= event
   -diffs.each do |diff|
     - color = diff.to_f > 0 ? 'black' : 'red'
-    %font{color: color} #{diff}
+    %div
+      %font{color: color} #{diff}
 
+%h3
+  %a= link_to('Back', people_path)
