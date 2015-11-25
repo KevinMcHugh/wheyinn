@@ -2,7 +2,7 @@ class PeopleController < ApplicationController
 
   def create
     @person = Person.create(person_params)
-    @person.checkins.create(checkin_params)
+    CreateCheckin.call(@person, Event.last, checkin_params[:weight].to_f)
     redirect_to people_path
   end
 
