@@ -4,7 +4,7 @@ class Person < ActiveRecord::Base
 
   def percentage_change
     return unless up_by
-    @percentage_change ||= starting_weight ? '%.2f' % (up_by / starting_weight * 100) : nil
+    @percentage_change ||= starting_weight ?  sprintf('%4s',sprintf('%0.4g', (up_by / starting_weight * 100))) : nil
   end
 
   def checkin_diffs

@@ -1,9 +1,9 @@
 %h1{class: 'text-center'}= "MURPHY WEIGH-IN #{Event.last.name}"
-%table{border: 0, class: 'table table-condensed borderless', :'data-sort-name' => 'up_by', :'data-sort-order' => 'desc'}
+%table{border: 0, class: 'table table-condensed borderless'}
   %tr
     %th
-    %th Name
-    %th{:'data-field' => 'up_by', :'data-sortable' => 'true'} Up By
+    %th NAME
+    %th{:'data-field' => 'up_by', :'data-sortable' => 'true', class: 'text-right'} UP BY
   - @people.sort_by{|p| p.up_by || 0.0 }.reverse.each_with_index do |person, index|
     - up_by = person.try(:up_by)
     - positive = up_by.to_f > 0 ? 'positive' : 'negative'
