@@ -1,4 +1,4 @@
-%h1= "MURPHY WEIGH-IN #{Event.last.name}"
+%h1{class: 'text-center'}= "MURPHY WEIGH-IN #{Event.last.name}"
 %table{border: 0, class: 'table table-condensed borderless', :'data-sort-name' => 'up_by', :'data-sort-order' => 'desc'}
   %tr
     %th
@@ -11,11 +11,11 @@
       - percentage_change = person.try(:percentage_change)
       %td= index + 1
       %td= link_to(person.name.upcase, person_path(person), class: 'btn btn-default')
-      %td{class: positive}
+      %td{class: "#{positive} text-right"}
         - text = up_by ? "(#{percentage_change}%)" : ""
         = "#{up_by} #{text}"
 
 %div
-= link_to('Check In', new_checkin_path, class: 'btn btn-default')
+= link_to('Check In', new_checkin_path, class: 'btn btn-default pull-left')
 %div
-= link_to('Create a new person', new_person_path, class: 'btn btn-default')
+= link_to('New Person', new_person_path, class: 'btn btn-default pull-right')
