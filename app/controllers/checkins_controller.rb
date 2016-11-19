@@ -1,4 +1,5 @@
 class CheckinsController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     person = Person.find(checkin_params[:person_id])

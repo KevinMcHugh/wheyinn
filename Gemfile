@@ -30,6 +30,8 @@ gem 'pg'
 
 gem 'twitter-bootstrap-rails'
 
+gem 'devise'
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.0'
   gem 'pry'
