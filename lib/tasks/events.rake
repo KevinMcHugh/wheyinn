@@ -8,4 +8,7 @@ namespace :events do
     end
     new_event = Event.where(name: '2015').first_or_create
   end
+  task :create, [:name, :tagline] => [:environment] do |t, args|
+    CreateEvent.call(args[:name], args[:tagline])
+  end
 end
