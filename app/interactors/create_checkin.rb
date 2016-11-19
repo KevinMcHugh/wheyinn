@@ -12,5 +12,9 @@ class CreateCheckin
       person.starting_weight = weight
     end
     person.save
+
+    if current_user && !current_user.people.include?(person)
+      current_user.user_person_joins.create(person: person)
+    end
   end
 end
