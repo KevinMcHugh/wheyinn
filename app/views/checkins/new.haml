@@ -7,14 +7,14 @@
 %div
   .input-group
     = form_for :checkin, url: checkins_path do |f|
-      - options = ["SELECT A PERSON"]  + @people.map { |person| [person.name, person.id] }
-      = f.select :person_id, options_for_select(options)
+      - options = @current_people.map { |person| [person.name, person.id] } + ['SELECT A PERSON'] + @people.map { |person| [person.name, person.id] }
+      = f.select :person_id, options_for_select(options, disabled: 'SELECT A PERSON')
       %br
       %p
       = f.label :weight
       %br
       = f.text_field :weight, { autocomplete: :off, class: "form-control" }
-      = f.submit class: "btn btn-primary text-uppercase"
+      = f.submit class: "btn btn-primary text-uppercase", value: 'SAVE >'
 
 %h3
-  %a= link_to('Back', people_path)
+  %a= link_to('< Back', people_path)

@@ -1,8 +1,9 @@
 class PeopleController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
 
   def create
     @person = Person.create(person_params)
-    CreateCheckin.call(@person, Event.last, checkin_params[:weight].to_f)
+    CreateCheckin.call(@person, Event.last, checkin_params[:weight].to_f, current_user)
     redirect_to people_path
   end
 

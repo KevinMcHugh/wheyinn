@@ -11,6 +11,7 @@ class CheckinsController < ApplicationController
   end
 
   def new
+    @current_people = current_user.people
     @people = Person.all
   end
 
