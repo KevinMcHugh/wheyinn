@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161119190221) do
+ActiveRecord::Schema.define(version: 20161119193652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,10 +23,12 @@ ActiveRecord::Schema.define(version: 20161119190221) do
     t.datetime "updated_at"
     t.integer  "event_id"
     t.decimal  "delta"
+    t.integer  "user_id"
   end
 
   add_index "checkins", ["event_id"], name: "index_checkins_on_event_id", using: :btree
   add_index "checkins", ["person_id"], name: "index_checkins_on_person_id", using: :btree
+  add_index "checkins", ["user_id"], name: "index_checkins_on_user_id", using: :btree
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -41,6 +43,16 @@ ActiveRecord::Schema.define(version: 20161119190221) do
     t.decimal  "starting_weight"
     t.decimal  "up_by"
   end
+
+  create_table "user_person_joins", force: true do |t|
+    t.integer  "person_id",  null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_person_joins", ["person_id"], name: "index_user_person_joins_on_person_id", using: :btree
+  add_index "user_person_joins", ["user_id"], name: "index_user_person_joins_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

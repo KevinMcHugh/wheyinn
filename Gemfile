@@ -35,6 +35,7 @@ gem 'devise'
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.0'
   gem 'pry'
+  gem 'pry-nav'
   gem 'pry-rails'
   gem 'simplecov', '~> 0.9'
 end
