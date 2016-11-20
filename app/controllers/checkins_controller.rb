@@ -12,7 +12,7 @@ class CheckinsController < ApplicationController
 
   def new
     @current_people = current_user.people
-    @people = Person.all
+    @people = Person.all - @current_people
   end
 
   private
