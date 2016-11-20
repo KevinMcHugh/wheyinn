@@ -1,3 +1,4 @@
+%h1 New Person
 .input-group
   = form_for :person, url: people_path do |f|
     %p
@@ -9,6 +10,6 @@
     %br
     = f.text_field :weight, { autocomplete: :off, class: "form-control" }
     %br
-    = f.submit class: "btn btn-primary text-uppercase"
+    = f.submit class: "btn btn-primary text-uppercase btn-block", value: 'SAVE >'
 %h3
-  %a= link_to('Back', people_path)
+  %a= link_to('< Back', new_checkin_path, class: 'btn btn-default btn-block navbar navbar-fixed-bottom')

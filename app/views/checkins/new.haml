@@ -1,4 +1,7 @@
 %h1 New Checkin
+%div
+  = link_to('Need to add someone?', new_person_path, class: 'btn btn-default btn-block') unless ENV['QUIET_MODE']
+
 - flash.each do |key, value|
   .alert{ :class => "alert-#{key}" }
     %button.close{ :data => { :dismiss => "alert" } } x
@@ -7,14 +10,15 @@
 %div
   .input-group
     = form_for :checkin, url: checkins_path do |f|
-      - options = @current_people.map { |person| [person.name, person.id] } + ['SELECT A PERSON'] + @people.map { |person| [person.name, person.id] }
-      = f.select :person_id, options_for_select(options, disabled: 'SELECT A PERSON')
+      = f.label :person
+      - options = @current_people.map { |person| [person.name, person.id] } + ['-'*20] + @people.map { |person| [person.name, person.id] }
+      = f.select :person_id, options_for_select(options, disabled: 'SELECT A PERSON'), class: 'input-block-level'
       %br
       %p
       = f.label :weight
       %br
       = f.text_field :weight, { autocomplete: :off, class: "form-control" }
-      = f.submit class: "btn btn-primary text-uppercase", value: 'SAVE >'
+      = f.submit class: "btn btn-primary text-uppercase btn-block", value: 'SAVE >'
 
 %h3
-  %a= link_to('< Back', people_path)
+  %a= link_to('< Back', people_path, class: 'btn btn-default btn-block navbar navbar-fixed-bottom')
