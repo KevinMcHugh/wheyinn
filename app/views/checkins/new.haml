@@ -12,7 +12,7 @@
     = form_for :checkin, url: checkins_path do |f|
       = f.label :person
       - options = @current_people.map { |person| [person.name, person.id] } + ['-'*20] + @people.map { |person| [person.name, person.id] }
-      = f.select :person_id, options_for_select(options, disabled: 'SELECT A PERSON'), class: 'input-block-level'
+      = f.select :person_id, options_for_select(options, disabled: ['-'*20]), class: 'input-block-level'
       %br
       %p
       = f.label :weight
