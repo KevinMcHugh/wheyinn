@@ -15,6 +15,10 @@ class CreateCheckin
 
     if current_user && !current_user.people.include?(person)
       current_user.user_person_joins.create(person: person)
+    elsif current_user.people.include?(person)
+      join = current_user.user_person_joins.find_by(person: person)
+      join.times_used += 1
+      join.save
     end
   end
 end

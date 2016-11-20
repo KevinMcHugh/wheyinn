@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161119211205) do
+ActiveRecord::Schema.define(version: 20161120023843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,10 +46,11 @@ ActiveRecord::Schema.define(version: 20161119211205) do
   end
 
   create_table "user_person_joins", force: true do |t|
-    t.integer  "person_id",  null: false
-    t.integer  "user_id",    null: false
+    t.integer  "person_id",              null: false
+    t.integer  "user_id",                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "times_used", default: 1
   end
 
   add_index "user_person_joins", ["person_id"], name: "index_user_person_joins_on_person_id", using: :btree

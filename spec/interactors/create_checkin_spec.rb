@@ -16,9 +16,13 @@ describe CreateCheckin do
       expect(user.people).to include(person)
     end
     context 'when the user and person are already joined' do
+      before { UserPersonJoin.create!(user: user, person: person) }
       it 'does not join them again' do
-        UserPersonJoin.create!(user: user, person: person)
         expect{subject}.not_to change{UserPersonJoin.count}
+      end
+      it 'updates the times_used count' do
+        subject
+        expect(user.user_person_joins.find_by(person: person).times_used).to eql(2)
       end
     end
   end
