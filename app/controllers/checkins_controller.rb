@@ -11,8 +11,8 @@ class CheckinsController < ApplicationController
   end
 
   def new
-    @current_people = current_user.people
-    @people = Person.all - @current_people
+    @current_people = current_user.people.sort_by { |p| p.name.downcase }
+    @people = (Person.all - @current_people).sort_by { |p| p.name.downcase }
   end
 
   private
