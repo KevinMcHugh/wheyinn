@@ -8,7 +8,7 @@ class PeopleController < ApplicationController
   end
 
   def index
-    @people = Person.all
+    @people = Event.last.people
   end
 
   def show
