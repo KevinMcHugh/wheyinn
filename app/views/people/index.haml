@@ -1,4 +1,4 @@
-%h1{class: 'text-center'}= "MURPHY WEIGH-IN #{Event.last.name}#{Event.last.tagline.empty? ? "" : ":"}"
+%h1{class: 'text-center'}= "MURPHY WEIGH-IN #{Event.last.name}#{Event.last.tagline.blank? ? "" : ":"}"
 %h2{class: 'text-center'}= "#{Event.last.tagline}"
 %table{border: 0, class: 'table table-condensed borderless'}
   %tr
