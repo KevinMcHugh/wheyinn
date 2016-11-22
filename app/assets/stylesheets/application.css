@@ -19,6 +19,9 @@
   background-color: black;
   color: yellow;
 }
+a {
+  color: white;
+}
 h1 {
   font-family:'Press Start 2P';
   color: yellow;
