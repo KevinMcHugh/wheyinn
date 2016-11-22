@@ -13,8 +13,8 @@
       %td= index + 1
       %td= link_to(person.name.upcase, person_path(person), class: 'btn btn-default')
       %td{class: "#{positive} text-right"}
-        - text = up_by ? "(#{percentage_change}%)" : ""
-        = "#{up_by} #{text}"
+        - percent_text = up_by ? "(#{percentage_change}%)" : ""
+        = "#{up_by.try(:round, 3)} #{percent_text}"
 
 %div
 = link_to('CHECK IN', new_checkin_path, class: 'btn btn-default btn-block navbar navbar-fixed-bottom') unless ENV['QUIET_MODE']
