@@ -17,4 +17,4 @@
         = "#{up_by} #{text}"
 
 %div
-= link_to('CHECK IN', new_checkin_path, class: 'btn btn-default btn-block navbar navbar-fixed-bottom') if ENV['QUIET_MODE']
+= link_to('CHECK IN', new_checkin_path, class: 'btn btn-default btn-block navbar navbar-fixed-bottom') unless ENV['QUIET_MODE']
