@@ -35,6 +35,13 @@ body {
   background-color: black;
   font-family:'Press Start 2P';
   color: yellow;
+  margin: 0
+}
+table {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
 }
 .positive {
   color: white;
@@ -42,6 +49,19 @@ body {
 .negative {
   color: red;
 }
+.table-container {
+  width: 100%;
+  display: inline-block;
+}
 .borderless td, .borderless th {
-    border: none;
+  border: none;
+}
+.ordinal {
+  width: 20px;
+}
+.person-name {
+  width: 150px;
+}
+.weight {
+  width: 73px;
 }
