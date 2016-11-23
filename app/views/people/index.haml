@@ -6,7 +6,7 @@
       %th{class: 'ordinal'}
       %th{class: 'text-left person-name'} NAME
       %th{:'data-field' => 'up_by', :'data-sortable' => 'true', class: 'text-right weight'} UP BY
-    - @people.sort_by{|p| p.up_by || 0.0 }.reverse.each_with_index do |person, index|
+    - @people.sort_by{|p| p.up_by || -1000 }.reverse.each_with_index do |person, index|
       - up_by = person.try(:up_by)
       - positive = up_by.to_f > 0 ? 'positive' : 'negative'
       %tr
