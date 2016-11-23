@@ -6,14 +6,45 @@ describe CreateCheckin do
   let(:event) { Event.create(name: '1')}
 
   describe '#call' do
-    subject { described_class.call(person, event, 100, user) }
+    subject { described_class.call(person, event, 200, user) }
     it 'creates a new Checkin' do
       expect{subject}.to change{Checkin.count}.by(1)
     end
-
     it 'joins the user and person' do
       subject
       expect(user.people).to include(person)
+    end
+    context 'when there is only one checkin' do
+     it 'does not send mail' do
+        expect(NewTopScoreMailer).to receive(:email)
+        subject
+      end
+    end
+    context 'when the person takes lead' do
+      context 'with multiple people' do
+        let(:leader) { Person.create }
+        it 'sends mail' do
+          described_class.call(leader, event, 100, user)
+          described_class.call(leader, event, 200, user)
+          described_class.call(person, event, 50, user)
+          expect(NewTopScoreMailer).to receive(:email)
+          subject
+        end
+      end
+      context 'with only one person' do
+
+      end
+    end
+    context 'when the person does not take the lead' do
+      let(:leader) { Person.create }
+      it 'does not send mail' do
+        described_class.call(leader, event, 100, user)
+        described_class.call(leader, event, 300, user)
+        described_class.call(person, event, 50, user)
+        expect(NewTopScoreMailer).not_to receive(:email)
+        expect(NewTopScoreMailer).not_to receive(:send)
+        subject
+      end
     end
     context 'when the user and person are already joined' do
       before { UserPersonJoin.create!(user: user, person: person) }
