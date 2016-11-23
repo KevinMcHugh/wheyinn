@@ -16,5 +16,9 @@
         - percent_text = up_by && percentage_change ? "(#{percentage_change.round(2)}%)" : ""
         %td{class: "#{positive} text-right weight"}= "#{up_by.try(:round, 3)} #{percent_text}"
 
-%div
-= link_to('CHECK IN', new_checkin_path, class: 'btn btn-default btn-block navbar navbar-fixed-bottom') unless ENV['QUIET_MODE']
+%br
+%br
+%br
+%br
+%br
+= link_to('CHECK IN', new_checkin_path, class: 'btn btn-default btn-block navbar navbar-fixed-bottom button-link') unless ENV['QUIET_MODE']

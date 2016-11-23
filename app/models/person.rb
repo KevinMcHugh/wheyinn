@@ -10,10 +10,10 @@ class Person < ActiveRecord::Base
   end
 
   def checkin_diffs
-    grouped = checkins.group_by(&:event)
+    grouped = checkins.includes(:event).order('events.created_at').group_by(&:event)
     event_diffs = {}
-    grouped.each_pair do |event, checkins|
-      diffs = checkins.map(&:delta).compact
+    grouped.each_pair do |event, event_checkins|
+      diffs = event_checkins.sort_by(&:created_at).map(&:delta).compact
       event_diffs[event.try(:name)] = diffs.map { |d| '%.2f' % d }
     end
     event_diffs
