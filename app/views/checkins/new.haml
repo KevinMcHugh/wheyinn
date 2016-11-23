@@ -1,6 +1,5 @@
 %h1{class: 'text-center'} New Checkin
 %div
-  = link_to('Need to add someone?', new_person_path, class: 'btn btn-default btn-block') unless ENV['QUIET_MODE']
 
 - flash.each do |key, value|
   .alert{ :class => "alert-#{key}" }
@@ -10,10 +9,10 @@
 %div
   .input-group
     = form_for :checkin, url: checkins_path do |f|
-      = f.label :person
-      - options = @current_people.map { |person| [person.name, person.id] } + ['-'*20] + @people.map { |person| [person.name, person.id] }
+      - options = ['SELECT YOUR NAME'] + @current_people.map { |person| [person.name, person.id] } + ['-'*20] + @people.map { |person| [person.name, person.id] }
       = f.select :person_id, options_for_select(options, disabled: ['-'*20]), class: 'input-block-level'
       %br
+      = link_to('Not Listed?', new_person_path, class: 'btn btn-default btn-block') unless ENV['QUIET_MODE']
       %p
       = f.label :weight
       %br
