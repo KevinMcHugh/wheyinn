@@ -28,9 +28,10 @@ class CreateCheckin
 
   def self.send_mail_maybe(person, event, previously_in_first)
     if !previously_in_first
-      NewTopScoreMailer.email(person)
+      NewTopScoreMailer.email(person).deliver
     elsif person.up_by && person != previously_in_first && person.up_by > previously_in_first.up_by
-      NewTopScoreMailer.email(person, previously_in_first)
+      NewTopScoreMailer.email(person, previously_in_first).deliver
     end
+  rescue
   end
 end
