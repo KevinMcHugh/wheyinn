@@ -27,6 +27,7 @@ class CreateCheckin
   end
 
   def self.send_mail_maybe(person, event, previously_in_first)
+    return if ENV['NO_MAIL'] == 'true'
     if !previously_in_first
       NewTopScoreMailer.email(person).deliver
     elsif person.up_by && person != previously_in_first && person.up_by >= previously_in_first.up_by

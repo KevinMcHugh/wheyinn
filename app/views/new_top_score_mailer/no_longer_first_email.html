@@ -6,7 +6,7 @@
   <body>
     <h1><%= @previously_in_first.name %>, You've been <%= @tie ? "tied for" : "knocked out of" %> first place! A new top score has been posted by <%= @person.name %></h1>
     <p>
-      They have gained <%= @person.up_by %> pounds, which is <%= @tie ? "tied with how much you've gained" : "much better than your measly #{@previously_in_first.up_by} pounds" %>. Keep eating!
+      They have gained <%= @person.up_by || 0 %> pounds, which is <%= @tie ? "tied with how much you've gained" : "much better than your measly #{@previously_in_first.up_by || 0 } pounds" %>. Keep eating!
     </p>
   </body>
 </html>
