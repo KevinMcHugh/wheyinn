@@ -15,6 +15,9 @@ class CheckinsController < ApplicationController
     @current_locations = current_user.user_location_joins.map(&:location)
     @locations = (Location.all - @current_locations).sort_by { |p| p.name.downcase }
     @people = (Person.all - @current_people).sort_by { |p| p.name.downcase }
+    @person = Person.find_by(id: params[:person_id])
+    @location = Location.find_by(id: params[:location_id])
+    @weight = params[:weight]
   end
 
   private
