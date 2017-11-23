@@ -12,6 +12,8 @@ class CheckinsController < ApplicationController
 
   def new
     @current_people = current_user.user_person_joins.order(:times_used).reverse.map(&:person)
+    @current_locations = current_user.user_location_joins.map(&:location)
+    @locations = (Location.all - @current_locations).sort_by { |p| p.name.downcase }
     @people = (Person.all - @current_people).sort_by { |p| p.name.downcase }
   end
 

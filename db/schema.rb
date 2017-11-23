@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120023843) do
+ActiveRecord::Schema.define(version: 20171123070943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,12 @@ ActiveRecord::Schema.define(version: 20161120023843) do
     t.string   "tagline"
   end
 
+  create_table "locations", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "people", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -44,6 +50,16 @@ ActiveRecord::Schema.define(version: 20161120023843) do
     t.decimal  "starting_weight"
     t.decimal  "up_by"
   end
+
+  create_table "user_location_joins", force: true do |t|
+    t.integer  "location_id", null: false
+    t.integer  "user_id",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_location_joins", ["location_id"], name: "index_user_location_joins_on_location_id", using: :btree
+  add_index "user_location_joins", ["user_id"], name: "index_user_location_joins_on_user_id", using: :btree
 
   create_table "user_person_joins", force: true do |t|
     t.integer  "person_id",              null: false
