@@ -13,10 +13,6 @@
       = f.select :person_id, options_for_select(options, disabled: ['-'*20]), class: 'input-block-level'
       %br
       = link_to('Not Listed?', new_person_path, class: 'btn btn-default btn-block') unless ENV['QUIET_MODE']
-      - location_options = ['SELECT YOUR LOCATION'] + @current_locations.map { |location| [location.name, location.id] } + ['-'*20] + @locations.map { |location| [location.name, location.id] }
-      = f.select :location_id, options_for_select(location_options, disabled: ['-'*20]), class: 'input-block-level'
-      %br
-      = link_to('Not Listed?', new_location_path, class: 'btn btn-default btn-block') unless ENV['QUIET_MODE']
       %p
       = f.label :weight
       %br

@@ -7,6 +7,4 @@ class User < ActiveRecord::Base
 
   has_many :user_person_joins
   has_many :people, through: :user_person_joins
-  has_many :user_location_joins
-  has_many :locations, through: :user_location_joins
 end
