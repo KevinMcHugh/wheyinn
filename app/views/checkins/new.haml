@@ -10,20 +10,17 @@
   .input-group
     = form_for :checkin, url: checkins_path do |f|
       - options = ['SELECT YOUR NAME'] + @current_people.map { |person| [person.name, person.id] } + ['-'*20] + @people.map { |person| [person.name, person.id] }
-      - selected = @person ? [@person.name, @person.id] : { disabled: ['-'*20] }
-      = f.select :person_id, options_for_select(options, selected), class: 'input-block-level'
+      = f.select :person_id, options_for_select(options, disabled: ['-'*20]), class: 'input-block-level'
       %br
       = link_to('Not Listed?', new_person_path, class: 'btn btn-default btn-block') unless ENV['QUIET_MODE']
       - location_options = ['SELECT YOUR LOCATION'] + @current_locations.map { |location| [location.name, location.id] } + ['-'*20] + @locations.map { |location| [location.name, location.id] }
-      / there's something fucky with this finding by location id instead of name, or something.
-      - location_selected = @location ? [@location.name, @location.id] : { disabled: ['-'*20] }
-      = f.select :location_id, options_for_select(location_options, location_selected), class: 'input-block-level'
+      = f.select :location_id, options_for_select(location_options, disabled: ['-'*20]), class: 'input-block-level'
       %br
       = link_to('Not Listed?', new_location_path, class: 'btn btn-default btn-block') unless ENV['QUIET_MODE']
       %p
       = f.label :weight
       %br
-      = f.text_field :weight, { autocomplete: :off, class: "form-control", value: @weight }
+      = f.text_field :weight, { autocomplete: :off, class: "form-control" }
       = f.submit class: "btn btn-primary text-uppercase btn-block", value: 'SAVE >'
 
 %h3

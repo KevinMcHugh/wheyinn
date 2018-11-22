@@ -3,7 +3,7 @@ class LocationsController < ApplicationController
 
   def create
     @location = Location.create(location_params)
-    redirect_to new_checkin_path(location_id: @location.id, person_id: params[:person_id], weight: params[:weight])
+    redirect_to new_checkin_path
   end
 
   def index
