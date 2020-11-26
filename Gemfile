@@ -1,4 +1,4 @@
-ruby "2.2.4"
+ruby "2.3.8"
 source 'https://rubygems.org'
 
 
@@ -23,10 +23,10 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
+gem 'rake', '< 11.0'
 
 gem 'haml-rails'
-gem 'pg'
+gem 'pg', '~> 0.20'
 
 gem 'twitter-bootstrap-rails'
 
@@ -38,8 +38,8 @@ gem 'pry-rails'
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.0'
   gem 'pry'
-  gem 'pry-nav'
-  gem 'simplecov', '~> 0.9'
+  # gem 'pry-nav'
+  # gem 'simplecov', '~> 0.9'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
